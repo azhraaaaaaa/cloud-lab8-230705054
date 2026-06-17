@@ -27,7 +27,9 @@ jobs:
       - name: Use secret
         env:
           API_KEY: ${{ secrets.API_KEY }}
-        run: echo "Secret length: \${#API_KEY}"
+        run: |
+          LENGTH=$(echo -n "$API_KEY" | wc -m)
+          echo "Secret length: $LENGTH"
 
   build:
     runs-on: ubuntu-latest
